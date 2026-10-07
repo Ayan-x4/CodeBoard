@@ -1,0 +1,7 @@
+import { BookOpenText, CircleHelp, FileCode2, FolderOpen, Keyboard, Settings2, SquarePen } from 'lucide-react';
+import { IconButton } from './IconButton';
+
+export type SidebarPanel = 'files' | 'notes' | null;
+export function Sidebar({ panel, onPanel, onProjects, onBoard, onHelp, onSettings }: { panel: SidebarPanel; onPanel: (panel: SidebarPanel) => void; onProjects: () => void; onBoard: () => void; onHelp: () => void; onSettings: () => void }) {
+  return <aside className="sidebar" aria-label="Workspace navigation"><div className="sidebar-top"><IconButton label="Project files" active={panel === 'files'} onClick={() => onPanel(panel === 'files' ? null : 'files')}><FileCode2 size={21} /></IconButton><IconButton label="Whiteboard" onClick={onBoard} className="board-nav-icon"><SquarePen size={21} /></IconButton><IconButton label="Lesson notes" active={panel === 'notes'} onClick={() => onPanel(panel === 'notes' ? null : 'notes')}><BookOpenText size={20} /></IconButton><span className="sidebar-rule" /><IconButton label="Open projects" onClick={onProjects}><FolderOpen size={20} /></IconButton></div><div className="sidebar-bottom"><IconButton label="Keyboard shortcuts" onClick={onHelp}><Keyboard size={19} /></IconButton><IconButton label="Workspace settings" onClick={onSettings}><Settings2 size={20} /></IconButton><IconButton label="About CodeBoard" onClick={onHelp}><CircleHelp size={20} /></IconButton><div className="local-avatar" title="Local workspace">You</div></div></aside>;
+}
